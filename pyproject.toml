@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "lol-analysis-tool"
+version = "0.1.0"
+description = ""
+authors = ["AvSchmude <adrian.v.schmude@outlook.de>"]
+readme = "README.md"
+packages = [{include = "lol_analysis_tool"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mysql-connector-python = "^8.0.33"
+flask = "^2.3.1"
+numpy = "^1.24.3"
+pandas = "^2.0.1"
+requests = "^2.29.0"
+matplotlib = "^3.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
