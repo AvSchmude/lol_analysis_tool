@@ -1,11 +1,11 @@
 import mysql
 import mysql.connector
-from lol_analysis_tool.endpoints.Tables import TABLES, item_keywords, part_keywords, match_keywords
+from lol_analysis_tool.endpoints.tables import TABLES, item_keywords, part_keywords, match_keywords
 from mysql.connector import errorcode
 from lol_analysis_tool.config import mysql_config
 
 
-class DatabaseEndpoint:
+class MySQLEndpoint:
     def __init__(self):
         self.con = mysql.connector.connect(**mysql_config)
         self.cursor = self.con.cursor()

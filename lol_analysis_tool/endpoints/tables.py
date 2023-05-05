@@ -20,16 +20,20 @@ TABLES = {'items': (
     "   assists INTEGER NOT NULL,"
     "   creep_score INTEGER NOT NULL,"
     "   gold_earned INTEGER NOT NULL,"
-    "   win BOOLEAN NOT NULL, "
+    "   gold_spent INTEGER NOT NULL,"
+    "   win BOOLEAN NOT NULL,"
+    "   surrender BOOLEAN NOT NULL,"
     "   minions_killed INTEGER NOT NULL,"
     "   monsters_killed INTEGER NOT NULL,"
     "   damage_dealt_total INTEGER NOT NULL,"
     "   damage_dealt_physical INTEGER NOT NULL,"
-    "   damage_dealt_magical INTEGER NOT NULL,"
+    "   damage_dealt_magic INTEGER NOT NULL,"
     "   damage_dealt_true INTEGER NOT NULL,"
+    "   damage_dealt_objectives INTEGER NOT NULL,"
+    "   damage_dealt_turrets INTEGER NOT NULL,"
     "   damage_taken_total INTEGER NOT NULL,"
     "   damage_taken_physical INTEGER NOT NULL,"
-    "   damage_taken_magical INTEGER NOT NULL,"
+    "   damage_taken_magic INTEGER NOT NULL,"
     "   damage_taken_true INTEGER NOT NULL,"
     "   healing_total INTEGER NOT NULL,"
     "   healing_teammates INTEGER NOT NULL,"
@@ -38,6 +42,8 @@ TABLES = {'items': (
     "   wards_placed INTEGER NOT NULL,"
     "   pinks_placed INTEGER NOT NULL,"
     "   wards_killed INTEGER NOT NULL,"
+    "   first_blood BOOLEAN NOT NULL,"
+    "   first_tower BOOLEAN NOT NULL,"
     "   turret_kills INTEGER NOT NULL,"
     "   longest_time_alive INTEGER NOT NULL,"
     "   spell_count_q INTEGER NOT NULL,"
@@ -45,6 +51,7 @@ TABLES = {'items': (
     "   spell_count_e INTEGER NOT NULL,"
     "   spell_count_r INTEGER NOT NULL,"
     "   ping_count INTEGER NOT NULL,"
+    "   item0_id INTEGER,"
     "   item1_id INTEGER,"
     "   item2_id INTEGER,"
     "   item3_id INTEGER,"
@@ -53,6 +60,7 @@ TABLES = {'items': (
     "   item6_id INTEGER,"
     "   PRIMARY KEY (id),"
     "   CONSTRAINT ck_win_bool CHECK (win in (1,0)),"
+    "   FOREIGN KEY(item0_id) REFERENCES items(id),"
     "   FOREIGN KEY(item1_id) REFERENCES items(id),"
     "   FOREIGN KEY(item2_id) REFERENCES items(id),"
     "   FOREIGN KEY(item3_id) REFERENCES items(id),"
@@ -92,6 +100,7 @@ TABLES = {'items': (
 
 
 def find_with_regex(query):
+    """Returns list of column names from the TABLES query"""
     word_list = ['VARCHAR', 'INTEGER', 'FLOAT', 'DATE']
     pattern = rf'(\w+)\s*(?:\b(?:{"|".join(word_list)})\b)'
     keyword = re.findall(pattern, query)
