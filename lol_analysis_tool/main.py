@@ -1,9 +1,9 @@
-import os
 import json
 import pandas as pd
-from endpoints.WebEndpoint import WebEndpoint
-from endpoints.DatabaseEndpoint import DatabaseEndpoint, TABLES
-from lol_analysis_tool.data.GameData import GameData
+from endpoints.mongodb_endpoint import MongoDBEndpoint
+from endpoints.riot_endpoint import RiotEndpoint, os, requests
+from endpoints.mysql_endpoint import MySQLEndpoint, TABLES
+from lol_analysis_tool.data.gamedata import GameData
 
 
 def convert_to_pretty_json(file_path):
@@ -16,7 +16,7 @@ def convert_to_pretty_json(file_path):
 
 
 def main():
-    ep = WebEndpoint()
+    ep = RiotEndpoint()
     # dbe = DatabaseEndpoint()
 
     gd = GameData(os.getcwd() + "\\data\\files\\ranked_solo\\EUW1_5988809047.json")
@@ -27,10 +27,7 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    path = os.getcwd()
-    print(path)
-    d = r'\data\files\queues.json'
-    p = path + d
-    with open(p, 'r') as file:
-        data = file.readlines()
+    me = MongoDBEndpoint()
+    re = RiotEndpoint()
+    matches, timelines = re.request_matches('Skounge', 420)
+    # print(os.path.dirname(r'.\data\files\timelines\.'))
