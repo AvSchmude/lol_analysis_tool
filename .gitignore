@@ -1,5 +1,6 @@
 # personal ignores
 lol_analysis_tool/data/files/ranked_solo
+lol_analysis_tool/data/files/timelines
 lol_analysis_tool/config.py
 
 # Python gitignore template
